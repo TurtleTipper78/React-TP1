@@ -1,8 +1,11 @@
+import React from 'react';
 import './Film.css';
 
 function Film() {
   return (
-    Film
+    <article>
+      <p>Route Film</p>
+    </article>
   );
 }
 
