@@ -2,7 +2,7 @@ import './Accueil.css';
 
 function Accueil() {
   return (
-    <div>
+    <div class="accueil">
       
       Accueil
 
