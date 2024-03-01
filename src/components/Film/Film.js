@@ -1,8 +1,10 @@
 import './Film.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { AppContext } from '../App/App';
 
 function Film() {
+
 
   let { id } = useParams();
 
@@ -57,8 +59,55 @@ async function soumettreNote(e){
       // setMoyenne()
       // setNbVote()
   });
-    
+
 }
+
+const context = useContext(AppContext);
+
+let blockAjoutCommentaire;
+  if (context.estLog){
+    blockAjoutCommentaire = 
+    <form onSubmit={soumettreCommentaire}>
+      <textarea placeholder='Commentaire'></textarea>
+      <button>Soumettre</button>
+    </form>
+  }
+
+  async function soumettreCommentaire(e){
+    e.preventDefault()
+    console.log(e.target)
+
+    let aCommentaires;
+
+  if (!film.commentaires) {
+    aCommentaires = [{ commentaire: "Je suis un commentaire", usager: context.usager }];
+  } else {
+    aCommentaires = film.commentaires;
+    aCommentaires.push({ commentaire: "Je suis un commentaire", usager: context.usager });
+  }
+
+  const oOption = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({commentaires: aCommentaires})
+  }
+
+  let putCommentaire = await fetch(urlFilm, oOption),
+      getFilm = await fetch(urlFilm);
+
+  Promise.all([putCommentaire, getFilm])
+    .then(response => response[1].json())
+    .then((data) => {
+      console.log(data);
+      setFilm(data)
+
+  });
+  
+    
+  };
+    
 
 
   return (
@@ -78,6 +127,7 @@ async function soumettreNote(e){
       <button onClick={soumettreNote}>4</button>
       <button onClick={soumettreNote}>4.5</button>
       <button onClick={soumettreNote}>5</button>
+      {blockAjoutCommentaire}
       <p>{film?.notes}</p>
     </article>
   );

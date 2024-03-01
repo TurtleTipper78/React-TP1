@@ -26,6 +26,10 @@
   nav a:hover {
     color: #fff;
   }
+  .logo{
+    min-width: 30px;
+    z-index: 1;
+  }
 
   header input{
     background: none;
@@ -38,7 +42,7 @@
   }
   header button{
     background: none;
-    color: #fff;
+    color: rgba(170, 186, 204, 1); 
     border: none;
     font: inherit;
     cursor: pointer;
