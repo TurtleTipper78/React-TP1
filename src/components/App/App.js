@@ -22,18 +22,22 @@ function App() {
   const [logging, setLogging] = useState({estLog: false, usager: ''})
 
   function login(e) {
-  e.preventDefault()
+    e.preventDefault()
     if (e.target.usager.value == 'admin'){
-      e.target.reset()
+      // sessionStorage.setItem('estLogin');
       setLogging(logging => ({ ...logging, estLog: true, usager: e.target.usager.value}) )
+      e.target.reset();
     }
-  
+  }
+
+  function logout() {
+    setLogging(logging => ({ ...logging, estLog: false, usager: ""}) )
   }
 
   return (
     <AppContext.Provider value={logging}> 
       <Router>
-        <Entete handleLogin={login} logging={logging}/>
+        <Entete handleLogin={login} logging={logging} handleLogout={logout}/>
         <Routes>
           <Route path="/" element={<Acceuil />}/>
           <Route path="/liste-films" element={<ListeFilms />}/>

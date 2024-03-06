@@ -14,7 +14,7 @@ function ListeFilms() {
     fetch(urlFiltre)
       .then((reponse) => reponse.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setListeFilms(data);
       });
   }, [urlFiltre]);
@@ -54,9 +54,7 @@ function ListeFilms() {
         url = urlListeFilms;
         break;
     }
-
     setUrlFiltre(url);
-    console.log(url)
   }
 
   return (

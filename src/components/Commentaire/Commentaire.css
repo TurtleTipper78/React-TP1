@@ -1,0 +1,11 @@
+.commentaire{
+    display: flex;
+    margin: auto;
+    border: 1px solid rgb(80, 88, 97); 
+    padding: 2vh;
+}
+
+.show p{
+    border: 1px solid rgb(80, 88, 97); 
+    padding: 2vh;
+}

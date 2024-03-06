@@ -1,43 +1,39 @@
+import { useState } from 'react';
 import './Filtre.css';
 
 function Filtre(props) {
+
+    const [filtreActif, setFiltreActif] = useState('Titre alphabétique (A-Z)')
+
+    function afficheFiltreActif(e){
+        setFiltreActif(e.target.textContent)
+    }
   
   return (
     <div>
-      {/* <button className="burger-btn">&#9776;</button> */}
-        <ul className="menu-list">
-            <li>
-                <button onClick={() => props.handleFiltre('Réalisateur alphabétique (A-Z)')}>
-                    Réalisateur alphabétique (A-Z)
-                </button>
-            </li>
-            <li>
-                <button onClick={() => props.handleFiltre('Réalisateur alphabétique (Z-A)')}>
-                    Réalisateur alphabétique (Z-A)
-                </button>
-            </li>
-            <li>
-                <button onClick={() => props.handleFiltre('Titre alphabétique (A-Z)')}>
-                    Titre alphabétique (A-Z)
-                </button>
-            </li>
-            <li>
-                <button onClick={() => props.handleFiltre('Titre alphabétique (Z-A)')}>
-                    Titre alphabétique (Z-A)
-                </button>
-            </li>
-            <li>
-                <button onClick={() => props.handleFiltre('Par année (du plus récent)')}>
-                    Par année (du plus récent)
-                </button>
-            </li>
-            <li>
-                <button onClick={() => props.handleFiltre('Par année (du plus ancien)')}>
-                    Par année (du plus ancien)
-                </button>
-            </li>
+        <p>Filtre Actif :<span data-testid="filtreActif">{filtreActif}</span></p>
+        <ul>
+            <li onClick={(e) => {props.handleFiltre('Réalisateur alphabétique (A-Z)'); afficheFiltreActif(e)}}>
+                Réalisateur alphabétique (A-Z) 
+            </li> 
+            <li onClick={(e) => {props.handleFiltre('Réalisateur alphabétique (Z-A)'); afficheFiltreActif(e)}}>
+                Réalisateur alphabétique (Z-A) 
+            </li> 
+            <li onClick={(e) => {props.handleFiltre('Titre alphabétique (A-Z)'); afficheFiltreActif(e)}}>
+                Titre alphabétique (A-Z)
+            </li> 
+            <li onClick={(e) => {props.handleFiltre('Titre alphabétique (Z-A)'); afficheFiltreActif(e)}}>
+                Titre alphabétique (Z-A)
+            </li> 
+            <li onClick={(e) => {props.handleFiltre('Par année (du plus récent)'); afficheFiltreActif(e)}}>
+                Par année (du plus récent)
+            </li> 
+            <li onClick={(e) => {props.handleFiltre('Par année (du plus ancien)'); afficheFiltreActif(e)}}>
+                Par année (du plus ancien)
+            </li> 
         </ul>
     </div>
+        
   
   );
 }

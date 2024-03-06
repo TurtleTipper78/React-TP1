@@ -1,12 +1,11 @@
 import './TuileFilm.css';
 
 function TuileFilm(props) {
+  console.log(props)
   return (
     <article className="card">
       <img src={`img/${props.data.titreVignette}`} alt={props.data.titre} />
-      {/* <h2>{props.data.titre}</h2>
-      <p>{props.data.realisation}</p>
-      <p>{props.data.annee}</p> */}
+      {/* <h2>{props.data.titre}</h2> */}
     </article>
   );
 }

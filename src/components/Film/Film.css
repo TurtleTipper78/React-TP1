@@ -1,0 +1,26 @@
+.film{
+    display: flex;
+    flex-direction: column;
+    background-color:rgba(30, 38, 45, 1); 
+    height: auto;
+    color: rgba(170, 186, 204, 1);
+    padding: 2vh;
+}
+
+.film img{
+    margin: auto;
+}
+.film h2{
+    margin: auto;
+    
+}
+.film p{
+    margin: auto;
+    border: 1px solid rgb(80, 88, 97); 
+    padding: 2vh;
+}
+.btn{
+    margin: auto;
+}
+
+
