@@ -11,7 +11,7 @@ function Filtre(props) {
   
   return (
     <div>
-        <p>Filtre Actif :<span data-testid="filtreActif">{filtreActif}</span></p>
+        <p className='fActif'>Filtre Actif :<span data-testid="filtreActif"> {filtreActif}</span></p>
         <ul>
             <li onClick={(e) => {props.handleFiltre('Réalisateur alphabétique (A-Z)'); afficheFiltreActif(e)}}>
                 Réalisateur alphabétique (A-Z) 
@@ -34,7 +34,6 @@ function Filtre(props) {
         </ul>
     </div>
         
-  
   );
 }
 

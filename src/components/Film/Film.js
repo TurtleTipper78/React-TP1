@@ -15,7 +15,7 @@ useEffect(() => {
   fetch(urlFilm)
     .then((reponse) => reponse.json())
     .then((data) => {
-      // console.log(data)
+      //console.log(data.commentaires)
       setFilm(data);
     })
 }, []);
@@ -52,6 +52,8 @@ async function soumettreNote(e){
   });
 }
 
+//console.log(film.commentaires)
+
     
   return (
     <article className="film">
@@ -73,7 +75,9 @@ async function soumettreNote(e){
         <button onClick={soumettreNote}>5</button>
       </div>
       <p>{film?.notes}</p>
-      <Commentaire />
+
+      <Commentaire data={{param: id, commentaires: film.commentaires}} />
+      {/*<Commentaire data={film.commentaires} />*/}
     </article>
     
   );

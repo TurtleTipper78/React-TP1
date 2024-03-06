@@ -3,37 +3,35 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../App/App';
 
-function Commentaire() {
+function Commentaire(props) {
+    //console.log(props.data);
+    const context = useContext(AppContext);
 
-    let { id } = useParams();
+    let id = props.data.param;
 
-    const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`
-    const [listeCommentaire, setListeCommentaire] = useState([])
+    const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`;
+    const [listeCommentaire, setListeCommentaire] = useState([]);
 
     useEffect(() => {
-
-    fetch(urlFilm)
-        .then((reponse) => reponse.json())
-        .then((data) => {
-        // console.log(data)
-        setListeCommentaire(data.commentaires);
-        })
-    }, []);
+        setListeCommentaire(props.data.commentaires);
+    }, [props.data.commentaires]);
 
     let blockShowCommentaire
     if (listeCommentaire){
         blockShowCommentaire =
         listeCommentaire.map((indexCommentaire, index)=>(
-                <p key={index}>Comment: {indexCommentaire.commentaire} User: {indexCommentaire.usager}</p>
+            <div key={index}>
+                <p>Comment: {indexCommentaire.commentaire}</p>
+                <small>- User: {indexCommentaire.usager}</small>
+            </div>
         ))
     };
     
-    const context = useContext(AppContext);
 
     let blockAjoutCommentaire;
     if (context.estLog){
         blockAjoutCommentaire = 
-        <form onSubmit={soumettreCommentaire}>
+        <form onSubmit={soumettreCommentaire}>``
         <textarea placeholder='Commentaire'></textarea>
         <button>Soumettre</button>
         </form>
@@ -42,34 +40,35 @@ function Commentaire() {
     async function soumettreCommentaire(e){
         e.preventDefault()
         
-        const aCommentaires = listeCommentaire.commentaires || [];
+        let aCommentaires;
+        
+        let commentaireValue = document.querySelector("textarea").value;
 
-        const commentairValue = document.querySelector("textarea").value
 
-    if (!listeCommentaire.commentaires) {
-        aCommentaires = [{ commentaire: commentairValue, usager: context.usager }];
-    } else {
-        aCommentaires = listeCommentaire.commentaires;
-        aCommentaires.push({ commentaire: commentairValue, usager: context.usager });
-    }
+        if (!listeCommentaire) {
+            aCommentaires = [{ commentaire: commentaireValue, usager: context.usager }];
+        } else {
+            aCommentaires = listeCommentaire;
+            aCommentaires.push({ commentaire: commentaireValue, usager: context.usager });
+        }
+        
+        const oOption = {
+            method: 'PUT',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({commentaires: aCommentaires})
+        }
 
-    const oOption = {
-        method: 'PUT',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({commentaires: aCommentaires})
-    }
+        let putCommentaire = await fetch(urlFilm, oOption),
+            getCommentaire = await fetch(urlFilm);
 
-    let putCommentaire = await fetch(urlFilm, oOption),
-        getCommentaire = await fetch(urlFilm);
-
-    Promise.all([putCommentaire, getCommentaire])
-        .then(response => response[1].json())
-        .then((data) => {
-        console.log(data);
-        setListeCommentaire(data)
-    });
+        Promise.all([putCommentaire, getCommentaire])
+            .then(response => response[1].json())
+            .then((data) => {
+                setListeCommentaire(data.commentaires)
+        });
+        
         
     };
 
@@ -83,7 +82,7 @@ function Commentaire() {
             </div>
         </section>
     );
-    }
+}
 
 
 export default Commentaire;
