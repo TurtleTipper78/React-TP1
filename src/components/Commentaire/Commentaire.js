@@ -27,11 +27,10 @@ function Commentaire(props) {
         ))
     };
     
-
     let blockAjoutCommentaire;
     if (context.estLog){
         blockAjoutCommentaire = 
-        <form onSubmit={soumettreCommentaire}>``
+        <form onSubmit={soumettreCommentaire}>
         <textarea placeholder='Commentaire'></textarea>
         <button>Soumettre</button>
         </form>
@@ -41,7 +40,6 @@ function Commentaire(props) {
         e.preventDefault()
         
         let aCommentaires;
-        
         let commentaireValue = document.querySelector("textarea").value;
 
 

@@ -30,7 +30,6 @@ function ListeFilms() {
 
   function fUrl(filtre) {
     let url;
-    console.log(filtre)
     switch (filtre) {
       case 'Réalisateur alphabétique (A-Z)':
         url = `${urlListeFilms}?orderBy=realisation&orderDirection=asc`;

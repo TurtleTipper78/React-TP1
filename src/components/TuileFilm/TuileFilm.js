@@ -1,7 +1,7 @@
 import './TuileFilm.css';
 
 function TuileFilm(props) {
-  console.log(props)
+  
   return (
     <article className="card">
       <img src={`img/${props.data.titreVignette}`} alt={props.data.titre} />
