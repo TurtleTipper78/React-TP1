@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 
-import Entete from '../Entete/Entete'
+import Entete from '../Entete/Entete';
 import Acceuil from '../Accueil/Accueil';
-import ListeFilms from '../ListeFilms/ListeFilms'
-import Film from '../Film/Film'
+import ListeFilms from '../ListeFilms/ListeFilms';
+import Film from '../Film/Film';
 import Filtre from '../Filtre/Filtre';
-import Admin from '../Admin/Admin'
+import Admin from '../Admin/Admin';
 import Footer from '../Footer/Footer';
+import Erreur404 from '../Erreur404/Erreur404'
 
 import './App.css'; 
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/film/:id" element={<Film />}/>
             <Route path="/filtre" element={<Filtre />}/>
             <Route path="/admin" element={logging.estLog ? <Admin /> : <Navigate to="/" />} />
+            <Route path="/404" element={<Erreur404 />}/>
           </Routes>
 
         </AnimatePresence>

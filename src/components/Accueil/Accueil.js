@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import './Accueil.css';
+import accueil from './Accueil.json'
 
 function Accueil() {
 
-  // const contenueAccueil = accueil.map((paragraphe, index) => {
-  //   return <p key={index}>{paragraphe}</p>
-  // })
+  const contenueAccueil = accueil.map((paragraphe, index) => {
+    return <p key={index}>{paragraphe}</p>
+  })
 
   const transition = { duration: 0.5, ease: 'easeInOut' };
   
@@ -24,7 +25,7 @@ function Accueil() {
       className='accueil'
     >
       <div className='wrapper'>
-        <p className='hallo'>HALLLLOOO</p>
+        {accueil}
       </div>
 
     </motion.main>
