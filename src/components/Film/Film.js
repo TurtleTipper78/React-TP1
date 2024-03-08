@@ -2,6 +2,7 @@ import './Film.css';
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import  Commentaire  from '../Commentaire/Commentaire'
+import Note from '../Note/Note';
 
 function Film() {
 
@@ -62,22 +63,8 @@ async function soumettreNote(e){
       <p>{film?.realisation}</p>
       <p>{film?.annee}</p>
       <p>{film?.description}</p>
-      <div className='btn'>
-        <button onClick={soumettreNote}>0.5</button>
-        <button onClick={soumettreNote}>1</button>
-        <button onClick={soumettreNote}>1.5</button>
-        <button onClick={soumettreNote}>2</button>
-        <button onClick={soumettreNote}>2.5</button>
-        <button onClick={soumettreNote}>3</button>
-        <button onClick={soumettreNote}>3.5</button>
-        <button onClick={soumettreNote}>4</button>
-        <button onClick={soumettreNote}>4.5</button>
-        <button onClick={soumettreNote}>5</button>
-      </div>
-      <p>{film?.notes}</p>
-
+      <Note />
       <Commentaire data={{param: id, commentaires: film.commentaires}} />
-      {/*<Commentaire data={film.commentaires} />*/}
     </article>
     
   );
