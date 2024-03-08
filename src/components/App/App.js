@@ -1,15 +1,17 @@
 //npm install react-router-dom
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
+
+import Entete from '../Entete/Entete'
 import Acceuil from '../Accueil/Accueil';
 import ListeFilms from '../ListeFilms/ListeFilms'
-import Entete from '../Entete/Entete'
 import Film from '../Film/Film'
-import './App.css'; 
 import Filtre from '../Filtre/Filtre';
-import Footer from '../Footer/Footer';
 import Admin from '../Admin/Admin'
+import Footer from '../Footer/Footer';
+
+import './App.css'; 
 
 export const AppContext = React.createContext();
 
@@ -18,6 +20,8 @@ export const AppContext = React.createContext();
 // }
 
 function App() {
+
+  const location = useLocation();
 
   const [logging, setLogging] = useState({estLog: false, usager: ''})
 
@@ -36,17 +40,20 @@ function App() {
 
   return (
     <AppContext.Provider value={logging}> 
-      <Router>
         <Entete handleLogin={login} logging={logging} handleLogout={logout}/>
-        <Routes>
-          <Route path="/" element={<Acceuil />}/>
-          <Route path="/liste-films" element={<ListeFilms />}/>
-          <Route path="/film/:id" element={<Film />}/>
-          <Route path="/filtre" element={<Filtre />}/>
-          <Route path="/admin" element={logging.estLog ? <Admin /> : <Navigate to="/" />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+
+          <Routes location={location} key={location.key}>
+            <Route path="/" element={<Acceuil />}/>
+            <Route path="/accueil" element={<Acceuil />}/>
+            <Route path="/liste-films" element={<ListeFilms />}/>
+            <Route path="/film/:id" element={<Film />}/>
+            <Route path="/filtre" element={<Filtre />}/>
+            <Route path="/admin" element={logging.estLog ? <Admin /> : <Navigate to="/" />} />
+          </Routes>
+
+        </AnimatePresence>
         <Footer />
-      </Router>
     </AppContext.Provider>
   );
 }

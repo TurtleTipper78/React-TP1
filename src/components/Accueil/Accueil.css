@@ -1,4 +1,10 @@
-.accueil{
+.wrapper{
     background-color:rgba(30, 38, 45, 1); 
-    height: 100%;
+    color: rgba(170, 186, 204, 1); 
+    height: 100vh;
+}
+
+.hallo{
+    margin: 0;
+    padding: 0;
 }

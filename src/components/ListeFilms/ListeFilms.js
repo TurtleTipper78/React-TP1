@@ -1,14 +1,20 @@
-import './ListeFilms.css';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+
 import TuileFilm from "../TuileFilm/TuileFilm"
 import Film from "../Film/Film"
 import Filtre from "../Filtre/Filtre"
-import { useEffect, useState } from 'react';
+
+import './ListeFilms.css';
+
 
 function ListeFilms() {
   const urlListeFilms = 'https://four1f-node-api.onrender.com/films';
   const [urlFiltre, setUrlFiltre] = useState(urlListeFilms);
   const [listeFilms, setListeFilms] = useState([]);
+
+  const [estCharge, setEstCharge] = useState(false)
 
   useEffect(() => {
     fetch(urlFiltre)
@@ -16,6 +22,8 @@ function ListeFilms() {
       .then((data) => {
         // console.log(data);
         setListeFilms(data);
+
+        setEstCharge(true);
       });
   }, [urlFiltre]);
 
@@ -56,14 +64,31 @@ function ListeFilms() {
     setUrlFiltre(url);
   }
 
+  const transition = { duration: 0.5, ease: 'easeInOut' };
+  
+  const variant = {
+    hiddeen: { opacity: 0, y: 25 },
+    visible: { opacity: 1, y: 0, transition },
+    exit: { opacity: 1, y: 25, transition }
+  }
+
   return (
     <main>
       <div className="filtre">
         <Filtre handleFiltre={fUrl} />
       </div>
-      <div className="tuile">
+      {estCharge ? (
+      <motion.div 
+        key='lisyteFilm'
+        initial='hidden'
+        animate='visible'
+        exit='exit'
+        variants={variant}
+        className="tuile"
+      >
         {tuileFilm}
-      </div>
+      </motion.div>
+      ) : ( '' )}
     </main>
   );
 }
