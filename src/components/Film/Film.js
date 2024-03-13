@@ -9,6 +9,7 @@ function Film() {
   let { id } = useParams();
 
 const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`
+// const urlFilm = `https://nodejstp1.onrender.com/films/${id}`
 const [film, setFilm] = useState({})
 
 useEffect(() => {
@@ -58,13 +59,19 @@ async function soumettreNote(e){
     
   return (
     <article className="film">
+      <div className='poster'>
       <img src={`/img/${film?.titreVignette}`} alt={film?.titre} />
-      <h2>{film?.titre}</h2>
-      <p>{film?.realisation}</p>
-      <p>{film?.annee}</p>
-      <p>{film?.description}</p>
-      <Note />
-      <Commentaire data={{param: id, commentaires: film.commentaires}} />
+      </div>
+      <div className='header'>
+        <h1>{film?.titre}</h1>
+        <h3>{film?.realisation}</h3>
+        <h3>{film?.annee}</h3>
+        <h3>{film?.description}</h3>
+      </div>
+      <section className='user'>
+        <Note />
+        <Commentaire data={{param: id, commentaires: film.commentaires}} />
+      </section>
     </article>
     
   );

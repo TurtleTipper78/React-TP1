@@ -1,6 +1,7 @@
 .film{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     background-color:rgba(30, 38, 45, 1); 
     height: auto;
     color: rgba(170, 186, 204, 1);
@@ -9,15 +10,18 @@
 
 .film img{
     margin: auto;
+    min-height: 500px;
+    min-width: 350px;
 }
-.film h2{
-    margin: auto;
-    
+.film h1{
+    margin: 2vh;
+    padding: 2vh;
+    height: 4vh;
 }
 .film p{
-    margin: auto;
-    border: 1px solid rgb(80, 88, 97); 
+    margin: 2vh;
     padding: 2vh;
+    height: 4vh;
 }
 .btn{
     margin: auto;

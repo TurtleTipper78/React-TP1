@@ -10,6 +10,7 @@ function Commentaire(props) {
     let id = props.data.param;
 
     const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`;
+    // const urlFilm = `https://nodejstp1.onrender.com/films/${id}`;
     const [listeCommentaire, setListeCommentaire] = useState([]);
 
     useEffect(() => {
@@ -71,7 +72,7 @@ function Commentaire(props) {
     };
 
     return (
-        <section >
+        <section className='Commentaire'>
             <div className='ajout'>
                 {blockAjoutCommentaire}
             </div>
