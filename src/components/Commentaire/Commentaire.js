@@ -11,11 +11,15 @@ function Commentaire(props) {
 
     const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`;
     // const urlFilm = `https://nodejstp1.onrender.com/films/${id}`;
+    
     const [listeCommentaire, setListeCommentaire] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [commentText, setCommentText] = useState('');
+
 
     useEffect(() => {
         setListeCommentaire(props.data.commentaires);
-    }, [props.data.commentaires]);
+    },[props.data.commentaires]);
 
     let blockShowCommentaire
     if (listeCommentaire){
@@ -27,15 +31,25 @@ function Commentaire(props) {
             </div>
         ))
     };
-    
-    let blockAjoutCommentaire;
-    if (context.estLog){
-        blockAjoutCommentaire = 
-        <form onSubmit={soumettreCommentaire}>
-        <textarea placeholder='Commentaire'></textarea>
-        <button>Soumettre</button>
-        </form>
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
     }
+    
+    let btnAjoutcommentaire;
+    if (context.estLog){
+        btnAjoutcommentaire =
+        <button onClick={toggleModal}>Rajouter votre Commentaire</button>
+    }
+
+    
+    let blockAjoutCommentaire = (
+        <form onSubmit={soumettreCommentaire}>
+            <textarea placeholder='Commentaire'></textarea>
+            <button type="submit">Soumettre</button>
+        </form>
+    );
+    
 
     async function soumettreCommentaire(e){
         e.preventDefault()
@@ -68,17 +82,26 @@ function Commentaire(props) {
                 setListeCommentaire(data.commentaires)
         });
         
-        
+        toggleModal();
     };
 
     return (
-        <section className='Commentaire'>
-            <div className='ajout'>
-                {blockAjoutCommentaire}
-            </div>
+        <section className='commentaire'>
             <div className='show'>
                 {blockShowCommentaire}
             </div>
+            <div className='ajout'>
+                {btnAjoutcommentaire}
+            </div>
+
+            {showModal && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={toggleModal}>&times;</span>
+                        {blockAjoutCommentaire}
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

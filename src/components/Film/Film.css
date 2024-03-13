@@ -2,29 +2,22 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
     background-color:rgba(30, 38, 45, 1); 
     height: auto;
     color: rgba(170, 186, 204, 1);
     padding: 2vh;
 }
 
-.film img{
+.poster img{
     margin: auto;
     min-height: 500px;
     min-width: 350px;
 }
-.film h1{
-    margin: 2vh;
-    padding: 2vh;
-    height: 4vh;
-}
-.film p{
-    margin: 2vh;
-    padding: 2vh;
-    height: 4vh;
-}
-.btn{
+
+.header{
     margin: auto;
 }
+
 
 

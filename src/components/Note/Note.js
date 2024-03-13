@@ -7,13 +7,25 @@ function Note() {
 
     const urlFilm = `https://four1f-node-api.onrender.com/films/${id}`
     // const urlFilm = `https://nodejstp1.onrender.com/films/${id}`
+
     const [film, setFilm] = useState({})
     const [moy, setMoy] = useState("")
     const [total, setTotal] = useState("")
     const [msgErreur, setMsgErreur] = useState("")
 
-    function calculNote(d){
-        let dataNote = d
+    useEffect(() => {
+        fetch(urlFilm)
+            .then((reponse) => reponse.json())
+            .then((data) => {
+            setFilm(data);
+    
+            calculNote(data.notes)
+            })
+        }, []);
+
+    function calculNote(data){
+        console.log(data)
+        let dataNote = data
         let somme = 0;
         let compte = 0;
 
@@ -26,24 +38,14 @@ function Note() {
                 setMsgErreur(msgErreurString)
             }
         }
-            const moyVote = (somme / compte + 1).toFixed(1);
-            const totalVote = compte + 1 
-            setTotal(totalVote)
-            setMoy(moyVote)
+        const moyVote = (somme / compte + 1).toFixed(1);
+        const totalVote = compte + 1 
+        setTotal(totalVote)
+        setMoy(moyVote)
     }
 
-    useEffect(() => {
-    fetch(urlFilm)
-        .then((reponse) => reponse.json())
-        .then((data) => {
-        setFilm(data);
-
-        calculNote(data.notes)
-        })
-    }, []);
-
     async function soumettreNote(e){
-    // console.log(e.target.textContent)
+    console.log(e.target.textContent)
 
     let aNotes = e.target.textContent
     // console.log(aNotes)
@@ -74,27 +76,27 @@ function Note() {
 
     }
     return(
-        <section className='note'>
-            <div className='soumettre'>
-                <button onClick={soumettreNote}>0.5</button>
-                <button onClick={soumettreNote}>1</button>
-                <button onClick={soumettreNote}>1.5</button>
-                <button onClick={soumettreNote}>2</button>
-                <button onClick={soumettreNote}>2.5</button>
-                <button onClick={soumettreNote}>3</button>
-                <button onClick={soumettreNote}>3.5</button>
-                <button onClick={soumettreNote}>4</button>
-                <button onClick={soumettreNote}>4.5</button>
-                <button onClick={soumettreNote}>5</button>
-            </div>
-            <div className='moy'>
-                <h3>{moy}</h3>
-                {/* <h3>{msgErreur}</h3> */}
-            </div>
-            <div className='total'>
-                <h3>{total}</h3>
-            </div>
-        </section>
+    <section className='note'>
+        <div className='soumettre'>
+            <button onClick={soumettreNote}>0.5</button>
+            <button onClick={soumettreNote}>1</button>
+            <button onClick={soumettreNote}>1.5</button>
+            <button onClick={soumettreNote}>2</button>
+            <button onClick={soumettreNote}>2.5</button>
+            <button onClick={soumettreNote}>3</button>
+            <button onClick={soumettreNote}>3.5</button>
+            <button onClick={soumettreNote}>4</button>
+            <button onClick={soumettreNote}>4.5</button>
+            <button onClick={soumettreNote}>5</button>
+        </div>
+        <div className='moy'>
+            <h1>{moy}</h1>
+        </div>
+        <div className='total'>
+            <h3>{total}</h3>
+        </div>
+    </section>
+
     );
 }
 

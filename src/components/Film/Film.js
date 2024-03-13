@@ -21,46 +21,11 @@ useEffect(() => {
       setFilm(data);
     })
 }, []);
-
-
-async function soumettreNote(e){
-  // console.log(e.target.textContent)
-
-  let aNotes = e.target.textContent
-  // console.log(aNotes)
-  if (!film.note) {
-    aNotes = [1];
-  } else {
-    aNotes = film.notes;
-    aNotes.push(1);
-  }
-
-  const oOption = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({notes: aNotes})
-  }
-
-  let putNote = await fetch(urlFilm, oOption),
-      getFilm = await fetch(urlFilm);
-
-  Promise.all([putNote, getFilm])
-    .then(response => response[1].json())
-    .then((data) => {
-      // console.log(data.notes);
-      setFilm(data)
-  });
-}
-
-//console.log(film.commentaires)
-
     
   return (
     <article className="film">
       <div className='poster'>
-      <img src={`/img/${film?.titreVignette}`} alt={film?.titre} />
+        <img src={`/img/${film?.titreVignette}`} alt={film?.titre} />
       </div>
       <div className='header'>
         <h1>{film?.titre}</h1>

@@ -1,0 +1,15 @@
+.note{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+.soumettre{
+    margin:2vh;
+}
+.total{
+    margin:2vh;
+}
+.moy{
+    margin:2vh;
+}
+

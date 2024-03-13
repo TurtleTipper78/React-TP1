@@ -4,10 +4,14 @@ import './Filtre.css';
 
 function Filtre(props) {
 
-    const [filtreActif, setFiltreActif] = useState('Titre alphabétique (A-Z)')
-
     function afficheFiltreActif(e){
-        setFiltreActif(e.target.textContent)
+        let filtreBtn = e.target.parentNode.children
+
+        for (let i = 0; i < filtreBtn.length; i++) {
+            filtreBtn[i].style = "color: none;"
+        }
+
+        e.target.style = "color: green"
     }
 
     const transition = { duration: 0.5, ease: 'easeInOut' };
@@ -27,7 +31,6 @@ function Filtre(props) {
         variants={variantFiltre}
         className='filtre'
     >
-        <p className='fActif'>Filtre Actif :<span data-testid="filtreActif"> {filtreActif}</span></p>
         <ul>
             <li onClick={(e) => {props.handleFiltre('Réalisateur alphabétique (A-Z)'); afficheFiltreActif(e)}}>
                 Réalisateur alphabétique (A-Z) 
