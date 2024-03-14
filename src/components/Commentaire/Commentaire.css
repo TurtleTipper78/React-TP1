@@ -8,41 +8,74 @@
    
 }
 
-.ajout{
-    margin-left: 2vh;
+.ajout button{
+    background-color:rgba(20, 24, 28, 1);
+    border: 1px solid rgb(80, 88, 97); 
+    color: rgba(170, 186, 204, 1); 
+    padding: 16px 32px;
+    text-decoration: none;
     margin: 4vh;
+    cursor: pointer;
+    
+}
+
+.ajout button:hover {
+    color: #fff;
 }
 
 .show{
     margin: auto;
 }
 
-
-/* Style for the modal */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure the modal is on top of other content */
+    
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
+    background-color:rgba(30, 38, 45, 1); 
+    color: rgba(170, 186, 204, 1); 
+    
+    border: 1px solid green;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
-    width: 50%; /* Adjust the width of the modal content */
+    width: 50%;
+}
+.modal-content button{
+    
+    background-color:rgba(20, 24, 28, 1);
+    border: 1px solid rgb(80, 88, 97); 
+    color: rgba(170, 186, 204, 1); 
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4vh;
+    cursor: pointer;
+}
+    
+.modal-content form{
+    display: flex;
+    align-items: center;
+    
+}
+.modal-content textarea{
+    background-color:rgba(20, 24, 28, 1);
+    color: rgba(170, 186, 204, 1);
+    margin: 4vh;
+    min-width: 400px; 
+    min-height: 200px;
 }
 
+
 .close {
+    color: rgba(170, 186, 204, 1);
     position: absolute;
     top: 5px;
     right: 10px;
@@ -50,7 +83,7 @@
 }
 
 .close:hover {
-color: black;
+color: green;
 }
 
 

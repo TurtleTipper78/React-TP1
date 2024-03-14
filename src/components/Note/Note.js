@@ -18,6 +18,7 @@ function Note() {
             .then((reponse) => reponse.json())
             .then((data) => {
             setFilm(data);
+            console.log(data.notes)
     
             calculNote(data.notes)
             })
@@ -47,7 +48,7 @@ function Note() {
     async function soumettreNote(e){
     console.log(e.target.textContent)
 
-    let aNotes = e.target.textContent
+    let aNotes = (e.target.textContent);
     // console.log(aNotes)
     if (!film.note) {
         aNotes = [1];
@@ -89,12 +90,16 @@ function Note() {
             <button onClick={soumettreNote}>4.5</button>
             <button onClick={soumettreNote}>5</button>
         </div>
-        <div className='moy'>
-            <h1>{moy}</h1>
-        </div>
-        <div className='total'>
-            <h3>{total}</h3>
-        </div>
+        {msgErreur ? (
+            <h3>{msgErreur}</h3>
+        ) : (
+            <>
+                <div className='moy'>
+                    <h1> Moyenne: {moy}</h1>
+                    <small>Vote total: {total}</small>
+                </div>
+            </>
+        )}
     </section>
 
     );

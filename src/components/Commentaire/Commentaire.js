@@ -26,8 +26,7 @@ function Commentaire(props) {
         blockShowCommentaire =
         listeCommentaire.map((indexCommentaire, index)=>(
             <div key={index}>
-                <p>Comment: {indexCommentaire.commentaire}</p>
-                <small>- User: {indexCommentaire.usager}</small>
+                <h5>Comment: {indexCommentaire.commentaire}<small> - User: {indexCommentaire.usager}</small></h5>
             </div>
         ))
     };

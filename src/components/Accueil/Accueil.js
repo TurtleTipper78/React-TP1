@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion'
+import React, { useContext } from 'react';
 import './Accueil.css';
 import accueil from './Accueil.json'
+import { AppContext } from '../App/App';
 
 function Accueil() {
+
+  const context = useContext(AppContext);
 
   const contenueAccueil = accueil.map((paragraphe, index) => {
     return <p key={index}>{paragraphe}</p>
@@ -25,7 +29,16 @@ function Accueil() {
       className='accueil'
     >
       <div className='wrapper'>
-        {accueil}
+      {context.estLog ? <h1>Bienvenue : <span>Simon</span></h1> : null}
+
+        <div className='banner-wrapper'>
+          <img src="https://a.ltrbxd.com/resized/sm/upload/y1/1r/x7/80/obi-wan-0-1200-0-525-crop.jpg?k=df7f8b9a35" alt="Banner" />
+          <div className="overlay"></div>
+        </div>
+        <div className='accueil'>
+          {accueil}
+        </div>
+
       </div>
 
     </motion.main>

@@ -4,12 +4,20 @@
     align-items: center;
 }
 .soumettre{
-    margin:2vh;
+    margin: 2vh;
 }
+.soumettre button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+
 .total{
     margin:2vh;
 }
 .moy{
     margin:2vh;
 }
-

@@ -17,9 +17,9 @@ function Filtre(props) {
     const transition = { duration: 0.5, ease: 'easeInOut' };
   
     const variantFiltre = {
-        hidden: { opacity: 0, x: -25 },
+        hidden: { opacity: 0, x: -100 },
         visible: { opacity: 1, x: 0, transition },
-        exit: { opacity: 0, x: -25, transition }
+        exit: { opacity: 0, x: +100, transition }
     }
   
   return (

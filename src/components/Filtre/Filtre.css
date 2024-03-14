@@ -19,10 +19,9 @@
 .filtre li {
     list-style: none;
     margin: 10px;
+    
 }
 
-.fActif{
-    list-style: none;
-    margin: 10px;
-    padding: 10px;
+.filtre li:hover {
+    color: #fff;
 }
