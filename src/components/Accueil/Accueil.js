@@ -15,9 +15,9 @@ function Accueil() {
   const transition = { duration: 0.5, ease: 'easeInOut' };
   
   const variant = {
-    hiddeen: { opacity: 0, y: 25 },
+    hiddeen: { opacity: 0, y: 0 },
     visible: { opacity: 1, y: 0, transition },
-    exit: { opacity: 1, y: 25, transition }
+    exit: { opacity: 1, y: 0, transition }
   }
   return ( 
     <motion.main

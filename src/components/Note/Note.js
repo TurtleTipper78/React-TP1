@@ -18,15 +18,15 @@ function Note() {
             .then((reponse) => reponse.json())
             .then((data) => {
             setFilm(data);
-            console.log(data.notes)
+            // console.log(data)
     
             calculNote(data.notes)
             })
         }, []);
 
     function calculNote(data){
-        console.log(data)
         let dataNote = data
+        console.log(dataNote)
         let somme = 0;
         let compte = 0;
 
@@ -41,21 +41,26 @@ function Note() {
         }
         const moyVote = (somme / compte + 1).toFixed(1);
         const totalVote = compte + 1 
+
         setTotal(totalVote)
         setMoy(moyVote)
     }
 
     async function soumettreNote(e){
-    console.log(e.target.textContent)
+    // console.log(e.target.textContent)
 
-    let aNotes = (e.target.textContent);
-    // console.log(aNotes)
-    if (!film.note) {
-        aNotes = [1];
-    } else {
+    let note = e.target.textContent
+    let aNotes = []
+    console.log(note)
+    
+    // if (!film.note) {
+    //     aNotes = [];
+    //     console.log("Prout")
+    // } else {
         aNotes = film.notes;
-        aNotes.push(1);
-    }
+        aNotes.push(Number(note));
+        console.log(aNotes)
+    // }
 
     const oOption = {
         method: 'PUT',
