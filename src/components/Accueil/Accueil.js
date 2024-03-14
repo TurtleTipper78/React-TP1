@@ -9,7 +9,7 @@ function Accueil() {
   const context = useContext(AppContext);
 
   const contenueAccueil = accueil.map((paragraphe, index) => {
-    return <p key={index}>{paragraphe}</p>
+    return <h1 key={index}>{paragraphe}</h1>
   })
 
   const transition = { duration: 0.5, ease: 'easeInOut' };
@@ -29,15 +29,20 @@ function Accueil() {
       className='accueil'
     >
       <div className='wrapper'>
-      {context.estLog ? <h1>Bienvenue : <span>Simon</span></h1> : null}
+      
 
         <div className='banner-wrapper'>
+          
           <img src="https://a.ltrbxd.com/resized/sm/upload/y1/1r/x7/80/obi-wan-0-1200-0-525-crop.jpg?k=df7f8b9a35" alt="Banner" />
-          <div className="overlay"></div>
+          <div className="overlay">
+          <div className='accueil'>{accueil}</div>
+          {context.estLog ? <h3>Bienvenue : <span>Simon</span></h3> : null}
+            
+          </div>
+          
         </div>
-        <div className='accueil'>
-          {accueil}
-        </div>
+        
+        
 
       </div>
 

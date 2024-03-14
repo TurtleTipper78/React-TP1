@@ -14,22 +14,23 @@ function Commentaire(props) {
     
     const [listeCommentaire, setListeCommentaire] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [commentText, setCommentText] = useState('');
 
 
     useEffect(() => {
         setListeCommentaire(props.data.commentaires);
     },[props.data.commentaires]);
 
-    let blockShowCommentaire
-    if (listeCommentaire){
+    let blockShowCommentaire;
+    if (listeCommentaire && listeCommentaire.length > 0) {
         blockShowCommentaire =
-        listeCommentaire.map((indexCommentaire, index)=>(
-            <div key={index}>
-                <h5>Comment: {indexCommentaire.commentaire}<small> - User: {indexCommentaire.usager}</small></h5>
-            </div>
-        ))
-    };
+            listeCommentaire.map((indexCommentaire, index) => (
+                <div key={index}>
+                    <h5>Comment: {indexCommentaire.commentaire}<small> - User: {indexCommentaire.usager}</small></h5>
+                </div>
+            ));
+    } else {
+        blockShowCommentaire = <h3>Ce film n'a pas de commentaire</h3>;
+    }
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -78,7 +79,7 @@ function Commentaire(props) {
         Promise.all([putCommentaire, getCommentaire])
             .then(response => response[1].json())
             .then((data) => {
-                setListeCommentaire(data.commentaires)
+                    setListeCommentaire(data.commentaires)
         });
         
         toggleModal();

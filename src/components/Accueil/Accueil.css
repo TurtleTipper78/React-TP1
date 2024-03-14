@@ -3,11 +3,11 @@
     color: rgba(170, 186, 204, 1); 
     padding: 0;
     left: 0;
-    
     overflow: hidden;
 }
 
 .banner-wrapper {
+    display: flex;
     height: 675px;
     position: relative;
     width: 1200px;
@@ -15,7 +15,7 @@
 }
 
 .banner-wrapper img{
-    position: relative;
+    position: absolute;
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
@@ -32,8 +32,8 @@
                 linear-gradient(to bottom left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)); 
 }
 .accueil {
-    
-    bottom: 100px; 
-    z-index: 1;
+    align-items: center;
+    color: rgba(170, 186, 204, 1);
 }
+
 

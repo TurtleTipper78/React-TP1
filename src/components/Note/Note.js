@@ -11,7 +11,7 @@ function Note() {
     const [film, setFilm] = useState({})
     const [moy, setMoy] = useState("")
     const [total, setTotal] = useState("")
-    const [msgErreur, setMsgErreur] = useState("")
+
 
     useEffect(() => {
         fetch(urlFilm)
@@ -34,9 +34,6 @@ function Note() {
             if (dataNote[i] !== null) {
                 somme += dataNote[i];
                 compte++;
-            } else if (dataNote[i] == null){
-                let msgErreurString = "Pas de vote s'ti"
-                setMsgErreur(msgErreurString)
             }
         }
         const moyVote = (somme / compte + 1).toFixed(1);
@@ -44,6 +41,18 @@ function Note() {
 
         setTotal(totalVote)
         setMoy(moyVote)
+    }
+
+    let blockShowNote;
+    if ( total > 0) {
+        blockShowNote = (
+            <div className='moy'>
+                <h1> Moyenne: {moy}</h1>
+                <small>Vote total: {total}</small>
+            </div>
+        );
+    } else {
+        blockShowNote = <h3>Ce film n'a pas de vote</h3>;
     }
 
     async function soumettreNote(e){
@@ -95,16 +104,7 @@ function Note() {
             <button onClick={soumettreNote}>4.5</button>
             <button onClick={soumettreNote}>5</button>
         </div>
-        {msgErreur ? (
-            <h3>{msgErreur}</h3>
-        ) : (
-            <>
-                <div className='moy'>
-                    <h1> Moyenne: {moy}</h1>
-                    <small>Vote total: {total}</small>
-                </div>
-            </>
-        )}
+        {blockShowNote}
     </section>
 
     );
