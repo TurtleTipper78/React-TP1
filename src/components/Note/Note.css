@@ -2,6 +2,7 @@
     display: flex;
     flex-grow: 1;
     align-items: center;
+    flex-direction: column;
 }
 .soumettre{
     margin: 2vh;
@@ -10,12 +11,18 @@
 .soumettre button {
     background-color: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 0; 
     cursor: pointer;
+    position: relative;
 }
 
-.soumettre button:hover {
-    color: rgba(170, 186, 204, 1); 
+.soumettre button::before {
+    font-size: 64px; 
+    content: "★"; 
+}
+
+.star{
+    color: green;
 }
 
 .total{
@@ -24,3 +31,4 @@
 .moy{
     margin:2vh;
 }
+

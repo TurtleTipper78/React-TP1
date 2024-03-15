@@ -21,6 +21,7 @@ function Commentaire(props) {
     },[props.data.commentaires]);
 
     let blockShowCommentaire;
+    // console.log(listeCommentaire)
     if (listeCommentaire && listeCommentaire.length > 0) {
         blockShowCommentaire =
             listeCommentaire.map((indexCommentaire, index) => (
@@ -29,7 +30,7 @@ function Commentaire(props) {
                 </div>
             ));
     } else {
-        blockShowCommentaire = <h3>Ce film n'a pas de commentaire</h3>;
+        blockShowCommentaire = <h3>Aucun commentaire</h3>;
     }
 
     const toggleModal = () => {

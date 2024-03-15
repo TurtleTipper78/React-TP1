@@ -1,3 +1,4 @@
+import { color } from 'framer-motion';
 import './Note.css';
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
@@ -11,6 +12,7 @@ function Note() {
     const [film, setFilm] = useState({})
     const [moy, setMoy] = useState("")
     const [total, setTotal] = useState("")
+    const [note, setNote] = useState("")
 
 
     useEffect(() => {
@@ -19,14 +21,13 @@ function Note() {
             .then((data) => {
             setFilm(data);
             // console.log(data)
-    
             calculNote(data.notes)
             })
         }, []);
 
     function calculNote(data){
         let dataNote = data
-        console.log(dataNote)
+        // console.log(dataNote)
         let somme = 0;
         let compte = 0;
 
@@ -58,17 +59,18 @@ function Note() {
     async function soumettreNote(e){
     // console.log(e.target.textContent)
 
-    let note = e.target.textContent
+    let note = e.target.getAttribute('data-value');
     let aNotes = []
-    console.log(note)
-    
+    // console.log(note)
+    setNote(note)
+
     // if (!film.note) {
     //     aNotes = [];
     //     console.log("Prout")
     // } else {
         aNotes = film.notes;
         aNotes.push(Number(note));
-        console.log(aNotes)
+        // console.log(aNotes)
     // }
 
     const oOption = {
@@ -87,22 +89,42 @@ function Note() {
         .then((data) => {
         setFilm(data)
         calculNote(data.notes)
+        
     });
 
     }
+
+    function star(val){
+        let stars = document.querySelector(".soumettre").children;
+        let currentStarEl = stars[val-1]
+        //console.log(currentStarEl.value)
+        for (let i = 0; i < currentStarEl.value; i++) {
+            // console.log(stars[i])
+            stars[i].style = "color: green;"
+        }  
+    }
+
+    function exit(){
+        let stars = document.querySelector(".soumettre").children;
+        for (let i = 0; i < stars.length; i++) {
+            if(stars[i] > note){
+                stars[i].style = "color: black"
+            }
+            
+        }
+    }
+
+    
+
+    // className={note >= 2 ? "star" : "starhover"}
     return(
     <section className='note'>
         <div className='soumettre'>
-            <button onClick={soumettreNote}>0.5</button>
-            <button onClick={soumettreNote}>1</button>
-            <button onClick={soumettreNote}>1.5</button>
-            <button onClick={soumettreNote}>2</button>
-            <button onClick={soumettreNote}>2.5</button>
-            <button onClick={soumettreNote}>3</button>
-            <button onClick={soumettreNote}>3.5</button>
-            <button onClick={soumettreNote}>4</button>
-            <button onClick={soumettreNote}>4.5</button>
-            <button onClick={soumettreNote}>5</button>
+            <button data-value="1" value="1" className={note >= 1 ? "star" : ""} onMouseEnter={() => star("1")}onMouseLeave={exit} onClick={soumettreNote}></button>
+            <button data-value="2" value="2" className={note >= 2 ? "star" : ""} onMouseEnter={() => star("2")}onMouseLeave={exit} onClick={soumettreNote}></button>
+            <button data-value="3" value="3" className={note >= 3 ? "star" : ""} onMouseEnter={() => star("3")}onMouseLeave={exit} onClick={soumettreNote}></button>
+            <button data-value="4" value="4" className={note >= 4 ? "star" : ""} onMouseEnter={() => star("4")}onMouseLeave={exit} onClick={soumettreNote}></button>
+            <button data-value="5" value="5" className={note >= 5 ? "star" : ""} onMouseEnter={() => star("5")}onMouseLeave={exit} onClick={soumettreNote}></button>
         </div>
         {blockShowNote}
     </section>
